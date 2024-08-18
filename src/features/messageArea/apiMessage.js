@@ -9,7 +9,7 @@ export async function getMessages({ conversation_id, pageParam = 0 }) {
   if (!conversation_id) return;
 
   const query = supabase
-    .from("messages")
+    .from("message_chat")
     .select("*")
     .eq("conversation_id", conversation_id)
     .order("created_at", { ascending: false })
@@ -31,7 +31,7 @@ export async function getMessageById(messageId) {
   if (!messageId) return null;
 
   const { data, error } = await supabase
-    .from("messages")
+    .from("message_chat")
     .select("*")
     .eq("id", messageId);
 
@@ -71,7 +71,7 @@ export async function sendMessage({
   }
 
   const { data, error } = await supabase
-    .from("messages")
+    .from("message_chat")
     .insert([{ id, conversation_id: convId, content }])
     .select();
 

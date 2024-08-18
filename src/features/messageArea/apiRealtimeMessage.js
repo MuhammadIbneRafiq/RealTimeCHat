@@ -12,7 +12,7 @@ export function subscribeRealtimeMessage({ conversation_id, callback }) {
       {
         event: "*",
         schema: "public",
-        table: "messages",
+        table: "message_chat",
         filter: `conversation_id=eq.${conversation_id}`,
       },
       (payload) => {
